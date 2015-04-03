@@ -1,4 +1,4 @@
-## csv_img_generator3000
+# CSV & Image Generator 3000
 
 ### Pre-requisite
 Ruby 1.9.3
