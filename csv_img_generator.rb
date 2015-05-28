@@ -13,7 +13,7 @@ GENERATE_CSV    = true
 GENERATE_CHILD                  = true
 GENERATE_CHILD_EVERY_X_PRODUCTS = 3  # Enter the value of X
 NUMBER_OF_CHILD                 = 5  # Number of Child generated
-IMG_DELIMITER                   = ";"
+IMG_DELIMITER                   = ","
 
 # Source Image
 SOURCE_FILE       = "source/img.jpg"
@@ -74,12 +74,12 @@ if GENERATE_CSV
   aFile = File.new(csv_name, "w")
     
     # Write the Header of the CSV file
-    aFile.syswrite("ProductId,ProductName,Cost,MAP,ParentId,VideoURL,Color,Height,Weight,ShippingMethod,ImageName\n")
+    aFile.syswrite("ProductId" + IMG_DELIMITER + "ProductName" + IMG_DELIMITER + "Cost" + IMG_DELIMITER + "MAP" + IMG_DELIMITER + "ParentId" + IMG_DELIMITER + "VideoURL" + IMG_DELIMITER + "Color" + IMG_DELIMITER + "Height" + IMG_DELIMITER + "Weight" + IMG_DELIMITER + "ShippingMethod" + IMG_DELIMITER + "ImageName\n")
 
     for i in 1..NB_PRODUCTS
 
       # Create the parent
-      line = "id#{i},Exaust,499.99,1.1,,http://youtube.com,Silver,6.2,35 lbs,Truck,img#{i}.jpg" + IMG_DELIMITER + "img_sec0#{i}.jpg" + IMG_DELIMITER + "img_sec00#{i}.jpg\n"
+      line = "id#{i}" + IMG_DELIMITER + "Exaust" + IMG_DELIMITER + "499.99" + IMG_DELIMITER + "1.1" + IMG_DELIMITER + "" + IMG_DELIMITER + "http://youtube.com" + IMG_DELIMITER + "Silver" + IMG_DELIMITER + "6.2" + IMG_DELIMITER + "35 lbs" + IMG_DELIMITER + "Truck,img#{i}.jpg" + IMG_DELIMITER + "img_sec0#{i}.jpg" + IMG_DELIMITER + "img_sec00#{i}.jpg\n"
       aFile.syswrite(line)
 
       if GENERATE_CHILD
@@ -89,7 +89,7 @@ if GENERATE_CSV
           
           # Create the number of child requested
           for j in 1..NUMBER_OF_CHILD
-            line = "idChild#{i}#{j},Bracket,19.99,1.5,id#{i},http://youtube.com,Silver,1.2,0.2 lbs,Truck,img_child0.jpg" + IMG_DELIMITER + "img_child00.jpg" + IMG_DELIMITER + "img_child000.jpg\n"
+            line = "idChild#{i}#{j}" + IMG_DELIMITER + "Bracket" + IMG_DELIMITER + "19.99" + IMG_DELIMITER + "1.5" + IMG_DELIMITER + "id#{i}" + IMG_DELIMITER + "http://youtube.com" + IMG_DELIMITER + "Silver" + IMG_DELIMITER + "1.2" + IMG_DELIMITER + "0.2 lbs" + IMG_DELIMITER + "Truck" + IMG_DELIMITER + "img_child0.jpg" + IMG_DELIMITER + "img_child00.jpg" + IMG_DELIMITER + "img_child000.jpg\n"
 
             aFile.syswrite(line)
           end
